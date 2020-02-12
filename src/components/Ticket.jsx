@@ -7,9 +7,9 @@ const Ticket = props => {
       <h3 className="location" >{props.location} - {props.names}</h3>
       <p className="issue"><em>{props.issue}</em></p>
       <hr/>
-      <style global jsx>{`
+      <style jsx>{`
         div {
-          background-color: gray
+          background-color: rgba(193, 193, 193, 0.5);
         }
       `}</style>
     </div>
