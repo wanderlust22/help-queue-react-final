@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 function Ticket(props){
   return (
@@ -9,17 +9,17 @@ function Ticket(props){
       <hr/>
       <style global jsx>{`
         div {
-          background-color: gray;
+          background-color: gray
         }
       `}</style>
     </div>
-  );
+  )
 }
 
-Ticket.PropTypes = {
+Ticket.propTypes = {
   names: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   issue: PropTypes.string
-};
+}
 
-export default Ticket;
+export default Ticket

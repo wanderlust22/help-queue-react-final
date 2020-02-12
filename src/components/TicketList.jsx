@@ -1,5 +1,5 @@
-import React from 'react';
-import Ticket from './Ticket';
+import React from 'react'
+import Ticket from './Ticket'
 
 const masterTicketList = [
   {
@@ -31,7 +31,7 @@ function TicketList(){
           key={index} />
       )}
     </div>
-  );
+  )
 }
 
-export default TicketList;
+export default TicketList
