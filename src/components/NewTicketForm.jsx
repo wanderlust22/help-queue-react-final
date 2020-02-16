@@ -1,15 +1,18 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-const NewTicketForm = () => {
+const NewTicketForm = props => {
     let _names = null
     let _location = null
     let _issue = null
 
     const handleNewTicketFormSubmission = event => {
         event.preventDefault()
-        console.log(_names)
-        console.log(_location)
-        console.log(_issue)
+        props.onNewTicketCreation({
+            names: _names.value,
+            location: _location.value,
+            issue: _issue.value
+        })
         _names.value = ''
         _location.value = ''
         _issue.value = ''
@@ -71,4 +74,7 @@ const NewTicketForm = () => {
     )
 }
 
+NewTicketForm.propTypes = {
+    onNewTicketCreation: PropTypes.func
+}
 export default NewTicketForm
