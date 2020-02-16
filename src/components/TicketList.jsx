@@ -3,15 +3,16 @@ import Ticket from './Ticket'
 import PropTypes from 'prop-types'
 
 const TicketList = props => {
+  console.log(props.ticketList)
   return (
     <div>
       <hr/>
-      {props.ticketList.map((ticket, index) =>
+      {props.ticketList.map(ticket =>
         <Ticket
           location={ticket.location}
           names={ticket.names}
           issue={ticket.issue}
-          key={index} />
+          key={ticket.id} />
       )}
     </div>
   )
