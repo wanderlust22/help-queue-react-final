@@ -12,7 +12,7 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={TicketList} />
         <Route path='/newticket' component={NewTicketControl} />
-        <Route path='/notfound' component={NotFound} />
+        <Route component={NotFound} />
       </Switch>
       <style global jsx>{`
         div {

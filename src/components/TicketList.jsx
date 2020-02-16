@@ -5,7 +5,7 @@ const masterTicketList = [
   {
     names: 'Thato and Haley',
     location: '3A',
-    issue: `Firebase won't save record. Help!!!!!!`
+    issue: 'Firebase won\'\t save record. Help!!!!!!'
   },
   {
     names: 'Sleater and Kinney',
