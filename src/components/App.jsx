@@ -1,7 +1,8 @@
 import React from 'react'
 import TicketList from './TicketList'
 import Header from './Header'
-import NewTicketForm from './NewTicketForm'
+import NewTicketControl from './NewTicketControl'
+import NotFound from './NotFound'
 import { Switch, Route } from 'react-router-dom'
 
 const App = () => {
@@ -10,7 +11,8 @@ const App = () => {
       <Header/>
       <Switch>
         <Route exact path='/' component={TicketList} />
-        <Route path='/newticket' component={NewTicketForm} />
+        <Route path='/newticket' component={NewTicketControl} />
+        <Route path='/notfound' component={NotFound} />
       </Switch>
       <style global jsx>{`
         div {
