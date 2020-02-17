@@ -6,7 +6,7 @@ const NotFound = props => {
     return(
         <div>
             <h1>404 Not Found</h1>
-            <p>The page "{props.location.pathname}"" does not exist.</p>
+            <p>The page "{props.location.pathname}" does not exist.</p>
             <Link to='/'>Home</Link>
         </div>
     )

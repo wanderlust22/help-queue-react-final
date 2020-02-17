@@ -17,9 +17,8 @@ class NewTicketControl extends React.Component {
     }
     
     render(){
-        const formVisibleOnPage = this.state.formVisibleOnPage
         let currentlyVisibleContent = null
-        formVisibleOnPage
+        this.state.formVisibleOnPage
             ? currentlyVisibleContent = <NewTicketForm onNewTicketCreation={this.props.onNewTicketCreation}/>
             : currentlyVisibleContent = <ConfirmationQuestions onTroubleshootingConfirmation={this.handleTroubleshootingConfirmation}/>
 
