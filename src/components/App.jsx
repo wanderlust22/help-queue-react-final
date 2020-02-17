@@ -11,7 +11,8 @@ class App extends React.Component {
     this.state = {
       masterTicketList: []
     }
-    this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this)
+    // Instead of using .bind(this), declare this state in sinde render()
+    // this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this)
   }
 
   handleAddingNewTicketToList(newTicket) {
@@ -20,11 +21,13 @@ class App extends React.Component {
     this.setState({ masterTicketList: newMasterTicketList })
   }
   render(){
+    // Declare inside of component and remove this.state.thisVariableName from JSX
+    const masterTicketList = this.state.masterTicketList
     return (
       <div>
         <Header/>
         <Switch>
-        <Route exact path='/' render={() => <TicketList ticketList={this.state.masterTicketList}/> } />
+        <Route exact path='/' render={() => <TicketList ticketList={masterTicketList}/> } />
           <Route path='/newticket' render={() => <NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />
           <Route component={NotFound} />
         </Switch>

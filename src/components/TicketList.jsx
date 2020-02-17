@@ -3,7 +3,6 @@ import Ticket from './Ticket'
 import PropTypes from 'prop-types'
 
 const TicketList = props => {
-  console.log(props.ticketList)
   return (
     <div>
       <hr/>
