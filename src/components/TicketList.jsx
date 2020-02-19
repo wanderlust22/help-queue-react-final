@@ -1,6 +1,6 @@
-import React from 'react'
-import Ticket from './Ticket'
-import PropTypes from 'prop-types'
+import React from 'react';
+import Ticket from './Ticket';
+import PropTypes from 'prop-types';
 
 const TicketList = props => {
   return (
@@ -11,14 +11,15 @@ const TicketList = props => {
           location={ticket.location}
           names={ticket.names}
           issue={ticket.issue}
+          formattedWaitTime={ticket.formattedWaitTime}
           key={ticket.id} />
       )}
     </div>
-  )
-}
+  );
+};
 
 TicketList.propTypes = {
   ticketList: PropTypes.array
-}
+};
 
-export default TicketList
+export default TicketList;

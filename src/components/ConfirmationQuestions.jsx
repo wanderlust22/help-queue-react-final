@@ -1,17 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const ConfirmationQuestions = props => {
-    return (
-        <div>
-            <p>Have you gone through all the steps on the Lean How to Program debugging lesson?</p>
-            <button onClick={props.onTroubleshootingConfirmation}>Yes</button>
-        </div>
-    )
-}
+  return (
+    <div>
+      <p>Have you gone through all the steps on the Lean How to Program debugging lesson?</p>
+      <button onClick={props.onTroubleshootingConfirmation}>Yes</button>
+    </div>
+  );
+};
 
 ConfirmationQuestions.propTypes = {
-    onTroubleshootingConfirmation: PropTypes.func
-}
+  onTroubleshootingConfirmation: PropTypes.func
+};
 
-export default ConfirmationQuestions
+export default ConfirmationQuestions;

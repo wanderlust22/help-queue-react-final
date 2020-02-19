@@ -1,33 +1,74 @@
-import React from 'react'
-import TicketList from './TicketList'
-import Header from './Header'
-import NewTicketControl from './NewTicketControl'
-import NotFound from './NotFound'
-import { Switch, Route } from 'react-router-dom'
+import React from 'react';
+import TicketList from './TicketList';
+import Header from './Header';
+import NewTicketControl from './NewTicketControl';
+import NotFound from './NotFound';
+import { Switch, Route } from 'react-router-dom';
+import Moment from 'moment';
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       masterTicketList: []
-    }
-    // Instead of using .bind(this), declare this state in sinde render()
-    // this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this)
+    };
+    this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
   }
 
-  handleAddingNewTicketToList(newTicket) {
-    let newMasterTicketList = this.state.masterTicketList.slice()
-    newMasterTicketList.push(newTicket)
-    this.setState({ masterTicketList: newMasterTicketList })
+  componentDidMount() {
+    this.waitTimeUpdateTimer = setInterval(() =>
+      this.updateTicketElapsedWaitTime(), 60000
+    );
   }
+
+  updateTicketElapsedWaitTime() {
+    let newMasterTicketList = this.state.masterTicketList.slice();
+    newMasterTicketList.forEach(ticket =>
+      ticket.formattedWaitTime = (ticket.timeOpen).fromNow(true)
+    );
+    this.setState({
+      masterTicketList: newMasterTicketList
+    });
+  }
+  
+  handleAddingNewTicketToList(newTicket) {
+    let newMasterTicketList = this.state.masterTicketList.slice();
+    newTicket.formattedWaitTime = (newTicket.timeOpen).fromNow(true);
+    newMasterTicketList.push(newTicket);
+    this.setState({ masterTicketList: newMasterTicketList });
+  }
+  // componentWillUnmount() {
+  //   console.log('componentWillUnmount');
+  //   clearInterval(this.waitTimeUpdateTimer);
+  // }
+
+  // componentWillMount() {
+  //   console.log('componentWillMount');
+  // }
+
+  // componentWillReceiveProps() {
+  //   console.log('componentWillReceiveProps');
+  // }
+
+  // shouldComponentUpdate() {
+  //   console.log('shouldComponentUpdate');
+  //   return false;
+  // }
+
+  // componentWillUpdate() {
+  //   console.log('componentWillUpdate');
+  // }
+
+  // componentDidUpdate() {
+  //   console.log('componentDidUpdate');
+  // }
+
   render(){
-    // Declare inside of component and remove this.state.thisVariableName from JSX
-    const masterTicketList = this.state.masterTicketList
     return (
       <div>
         <Header/>
         <Switch>
-        <Route exact path='/' render={() => <TicketList ticketList={masterTicketList}/> } />
+          <Route exact path='/' render={() => <TicketList ticketList={this.state.masterTicketList}/> } />
           <Route path='/newticket' render={() => <NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />
           <Route component={NotFound} />
         </Switch>
@@ -38,8 +79,8 @@ class App extends React.Component {
           }
         `}</style>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
