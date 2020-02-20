@@ -4,15 +4,18 @@ import Header from './Header';
 import NewTicketControl from './NewTicketControl';
 import NotFound from './NotFound';
 import { Switch, Route } from 'react-router-dom';
-import Moment from 'moment';
+import Admin from './Admin';
+import { v4 } from 'uuid';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      masterTicketList: []
+      masterTicketList: {},
+      selectedTicket: null
     };
     this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
+    this.handleChangingSelectedTicket = this.handleChangingSelectedTicket.bind(this);
   }
 
   componentDidMount() {
@@ -32,36 +35,17 @@ class App extends React.Component {
   }
   
   handleAddingNewTicketToList(newTicket) {
-    let newMasterTicketList = this.state.masterTicketList.slice();
-    newTicket.formattedWaitTime = (newTicket.timeOpen).fromNow(true);
-    newMasterTicketList.push(newTicket);
+    let newTicketId = v4();
+    let newMasterTicketList = Object.assign({}, this.state.masterTicketList,{
+      [newTicketId]: newTicket
+    });
+    newMasterTicketList[newTicket.id].formattedWaitTime = newMasterTicketList[newTicket.id].timeOpen.fromNow(true);
     this.setState({ masterTicketList: newMasterTicketList });
   }
-  // componentWillUnmount() {
-  //   console.log('componentWillUnmount');
-  //   clearInterval(this.waitTimeUpdateTimer);
-  // }
 
-  // componentWillMount() {
-  //   console.log('componentWillMount');
-  // }
-
-  // componentWillReceiveProps() {
-  //   console.log('componentWillReceiveProps');
-  // }
-
-  // shouldComponentUpdate() {
-  //   console.log('shouldComponentUpdate');
-  //   return false;
-  // }
-
-  // componentWillUpdate() {
-  //   console.log('componentWillUpdate');
-  // }
-
-  // componentDidUpdate() {
-  //   console.log('componentDidUpdate');
-  // }
+  handleChangingSelectedTicket(ticket){
+    this.setState({selectedTicket: ticketId});
+  }
 
   render(){
     return (
@@ -70,6 +54,9 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' render={() => <TicketList ticketList={this.state.masterTicketList}/> } />
           <Route path='/newticket' render={() => <NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />
+          <Route path='/admin' render={(props) => <Admin ticketList={this.state.masterTicketList} currentRouterPath={props.location.pathname} 
+          onTicketSelection={this.handleChangingSelectedTicket} selectedTicket={this.state.selectedTicket} />}
+          />
           <Route component={NotFound} />
         </Switch>
         <style global jsx>{`
